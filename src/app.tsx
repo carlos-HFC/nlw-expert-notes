@@ -3,6 +3,11 @@ import { NoteCard } from "@/components/note-card";
 
 import logo from '@/assets/logo-nlw-expert.svg';
 
+const NOTE = {
+  date: new Date(),
+  content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dolores illum obcaecati iusto, sint itaque error cupiditate ipsa possimus, architecto, officia tempora voluptatibus cumque ipsum mollitia fugit dolorum officiis nostrum?"
+};
+
 export function App() {
   return (
     <div className="mx-auto max-w-6xl my-12 space-y-6">
@@ -24,9 +29,7 @@ export function App() {
       <div className="grid grid-cols-3 gap-6 auto-rows-[250px]">
         <NewNoteCard />
 
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
+        <NoteCard note={NOTE} />
       </div>
     </div>
   );
