@@ -3,11 +3,11 @@ import { formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { XIcon } from "lucide-react";
 
+import { Note } from "@/@types";
+
 interface NoteCardProps {
-  note: {
-    date: Date;
-    content: string;
-  };
+  note: Note;
+  onNoteDeleted(id: string): void;
 }
 
 export function NoteCard(props: Readonly<NoteCardProps>) {
@@ -26,7 +26,7 @@ export function NoteCard(props: Readonly<NoteCardProps>) {
 
       <Dialog.Portal>
         <Dialog.Overlay className="inset-0 fixed bg-black/50" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-700 rounded-md max-w-[640px] w-full flex flex-col outline-none h-[60vh] overflow-hidden">
+        <Dialog.Content className="fixed inset-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 bg-slate-700 md:rounded-md md:max-w-[640px] w-full flex flex-col outline-none md:h-[60vh] overflow-hidden">
           <Dialog.Close className="absolute right-0 top-0 bg-slate-800 p-1.5 text-slate-400 hover:text-slate-100 outline-none">
             <XIcon size={20} />
           </Dialog.Close>
@@ -43,6 +43,7 @@ export function NoteCard(props: Readonly<NoteCardProps>) {
           <button
             type="button"
             className="w-full bg-slate-800 py-4 text-center text-sm text-slate-300 outline-none group"
+            onClick={() => props.onNoteDeleted(props.note.id)}
           >
             Desejar <span className="text-red-400 group-hover:underline">apagar essa nota</span>?
           </button>
